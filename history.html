@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History Log
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for transaction in history %}
+        <tr>
+            {% if transaction ["type"] == "deposit" %}
+            <td>{{ transaction["type"] }}</td>
+            <td>{{ transaction["symbol"] }}</td>
+            <td>N/A</td>
+            <td>+{{ transaction['price'] | usd}}</td>
+            <td>{{ transaction["time"] }}</td>
+            {% else %}
+            <td>{{ transaction["type"] }}</td>
+            <td>{{ transaction["symbol"] }}</td>
+            <td>{{ transaction["quantity"] }}</td>
+            <td>{{ transaction['price'] | usd}}</td>
+            <td>{{ transaction["time"] }}</td>
+            {% endif %}
+        </tr>
+        {%endfor%}
+    </tbody>
+
+    {% endblock %}
