@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History Log
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Player Name</th>
+            <th>Player ID</th>
+            <th>Price ($)</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for transaction in history %}
+        <tr>
+            <td>{{ transaction["firstName"] }}  {{transaction["lastName"]}}</td>
+            <td>{{ transaction["playerID"] }}</td>
+            <td>{{ transaction["price"] }}</td>
+            <td>{{ transaction["time"] }}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+
+    {% endblock %}

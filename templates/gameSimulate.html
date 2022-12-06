@@ -1,0 +1,75 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+Simulate Game
+{% endblock %}
+
+{% block main %}
+<form action="/gameSimulate" method="post">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Inning 1</th>
+            <th>Inning 2</th>
+            <th>Inning 3</th>
+            <th>Inning 4</th>
+            <th>Inning 5</th>
+            <th>Inning 6</th>
+            <th>Inning 7</th>
+            <th>Inning 8</th>
+            <th>Inning 9</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Away (cpu)</th>
+            <td id="away-0"></td>
+            <td id="away-1"></td>
+            <td id="away-2"></td>
+            <td id="away-3"></td>
+            <td id="away-4"></td>
+            <td id="away-5"></td>
+            <td id="away-6"></td>
+            <td id="away-7"></td>
+            <td id="away-8"></td>
+        </tr>
+        <tr>
+            <th scope="row">Home</th>
+            <td id="home-0"></td>
+            <td id="home-1"></td>
+            <td id="home-2"></td>
+            <td id="home-3"></td>
+            <td id="home-4"></td>
+            <td id="home-5"></td>
+            <td id="home-6"></td>
+            <td id="home-7"></td>
+            <td id="home-8"></td>
+
+        </tr>
+    </tbody>
+
+    <script>
+        home = JSON.parse({{ homeInnings | tojson }});
+        cpu = JSON.parse({{ cpuInnings | tojson }});
+        function press(i) {
+            if (i < 18) {
+                setTimeout(function () {
+                    index = Math.floor(i / 2);
+                    if (i % 2 == 0) {
+                        document.getElementById("away-" + index).innerHTML = cpu[index];
+                    }
+                    else {
+                        document.getElementById("home-" + index).innerHTML = home[index];
+                    }
+                    i++;
+                    press(i);
+                    } , 500);
+            }
+        }
+        press(0);
+    </script>
+
+</form>
+{% endblock %}

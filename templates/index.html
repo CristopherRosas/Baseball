@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Current Roster
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Player Name</th>
+            <th>Player ID</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Total Value</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for player in playersOwned %}
+        <tr>
+            <td>{{ names[player["playerID"]] }}</td>
+            <td>{{ player["playerID"] }}</td>
+            <td>{{ player["position"] }}</td>
+            <td>${{ player['salary'] }}</td>
+            <td>${{ player['salary'] }}</td>
+        </tr>
+        {%endfor%}
+
+        <tr>
+            <td colspan="3"></td>
+            <td><strong>Cash</strong></td>
+            <td>${{cash}}</td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td><strong>TOTAL</strong></td>
+            <td>${{TOTALVALUE}}</td>
+        </tr>
+    </tbody>
+
+
+    {% endblock %}

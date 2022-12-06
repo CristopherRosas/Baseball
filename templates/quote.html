@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Player Search
+{% endblock %}
+
+{% block main %}
+<form action="/quote" method="post">
+   <div class="mb-3">
+       <select class="form-select mx-auto w-auto" name="position">
+           <option disabled selected>Position</option>
+
+               {% for position in positions %}
+
+               <option> {{ position }} </option>
+
+               {% endfor %}
+
+       </select>
+   </div>
+   <button class="btn btn-primary" type="submit">Scout</button>
+</form>
+{% endblock %}
+
+

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Scout
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Player Name</th>
+            <th>Price ($)</th>
+            <th>Batting Average</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for player in playersOfPosition %}
+        <tr>
+            <td>{{ names[player['playerID']] }}</td>
+            <td>${{ prices[player['playerID']] }}</td>
+            <td>{{ battingAverages[player['playerID']] }}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+
+
+    {% endblock %}
